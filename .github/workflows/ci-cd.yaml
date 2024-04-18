@@ -36,16 +36,5 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v2
         with:
-          name: mochawesome
-          path: cypress/mocha-report
-
-
-  deploy:
-    runs-on: ubuntu-latest
-    needs: test
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Deploy
-        run: npm run deploy
+          name: mochawesome-report
+          path: cypress/reports/mochawesome
