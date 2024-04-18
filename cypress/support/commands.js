@@ -26,16 +26,16 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
-Cypress.Commands.add("selectProduct", (nombreDeProducto) => {
+Cypress.Commands.add("selectProduct", (productoName) => {
     cy.get(".features_items > .col-sm-4").as("contenedorDeProductos")
     cy.get("@contenedorDeProductos")
         .find('.productinfo')
         .each(($el, index, $list) => {
-            let producto = $el.text()
-            if (producto.includes(nombreDeProducto)) {
-                cy.log('Se ha encontrado el elemento buscado')
+            let product = $el.text()
+            if (product.includes(productoName)) {
+                cy.log('The searched item has been found')
                 cy.get('@contenedorDeProductos').eq(index).find('.choose').click()
-                cy.get('.product-information > h2').should('contain.text', nombreDeProducto)
+                cy.get('.product-information > h2').should('contain.text', productoName)
             }
 
         })
