@@ -5,9 +5,9 @@
     "passes": 2,
     "pending": 0,
     "failures": 0,
-    "start": "2024-04-18T18:40:39.797Z",
-    "end": "2024-04-18T18:41:23.992Z",
-    "duration": 44195,
+    "start": "2024-04-18T19:14:57.846Z",
+    "end": "2024-04-18T19:15:41.005Z",
+    "duration": 43159,
     "testsRegistered": 2,
     "passPercent": 100,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "470d0c7b-e92b-4231-9789-59e267b70c8b",
+      "uuid": "41ce89c2-6983-47ed-8e90-82d4b1d1e2a9",
       "title": "",
       "fullFile": "cypress/e2e/examples/automationExercise.cy.js",
       "file": "cypress/e2e/examples/automationExercise.cy.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "84db001c-6a90-4440-8e7d-c2877d113d39",
+          "uuid": "e03a60b7-ba3c-4fa7-8965-f896b73bdd5b",
           "title": "Apply Digital Test",
           "fullFile": "",
           "file": "",
@@ -38,7 +38,7 @@
               "title": "Register and buy a product",
               "fullTitle": "Apply Digital Test Register and buy a product",
               "timedOut": null,
-              "duration": 29152,
+              "duration": 28912,
               "state": "passed",
               "speed": "slow",
               "pass": true,
@@ -47,8 +47,8 @@
               "context": null,
               "code": "const emailTest = `cypressTest${Date.now()}@gmail.com`;\ncurrentPaylod.email = emailTest;\n//In this step we enter the product, we use a function created in commands.js called selectProduct\ncy.selectProduct('Blue Cotton Indie Mickey Dress');\n//in this section we add the quantity to buy and proceed to add it to the cart.\ncy.get(producto.quantity).clear().type(30);\ncy.get(producto.addCartBtn).click().wait(1000);\ncy.get(producto.modalConfirm).find('u').should('contain.text', 'View Cart').click();\ncy.get(producto.checkoutBtn).should('contain.text', 'Proceed To Checkout').click();\n//we proceed to buy, and as we are not registered, we do the registration flow. \ncy.get(producto.registesLoginBtn).should('contain.text', 'Register / Login').click();\ncy.get(producto.signForm).should('be.visible');\ncy.get(registro.sigName).type(currentPaylod.name);\ncy.get(registro.sigEmail).type(currentPaylod.email);\ncy.get(registro.signBtn).click();\ncy.get(registro.formTittle).should('contain.text', 'Enter Account Information');\ncy.get(registro.passwordBtn).type(currentPaylod.password);\ncy.get(registro.day).select(currentPaylod.day);\ncy.get(registro.month).select(currentPaylod.month);\ncy.get(registro.year).select(currentPaylod.year);\ncy.get(registro.firstName).type(currentPaylod.name);\ncy.get(registro.lastName).type(currentPaylod.lastName);\ncy.get(registro.address).type(currentPaylod.address);\ncy.get(registro.country).select(currentPaylod.country);\ncy.get(registro.state).type(currentPaylod.state);\ncy.get(registro.city).type(currentPaylod.city);\ncy.get(registro.zip).type(currentPaylod.zip);\ncy.get(registro.phone).type(currentPaylod.phone);\ncy.get(registro.createBtn).click();\ncy.get(registro.accountCreatedTittle).should('contain.text', 'Account Created!');\ncy.get(registro.continueBtn).click();\ncy.get(registro.cartBtn).click();\ncy.get(producto.checkoutBtn).should('contain.text', 'Proceed To Checkout').click();\ncy.get(registro.placeorderBtn).should('contain.text', 'Place Order').click();\n//once registered, we go to the payment process\ncy.get(registro.tittle).should('contain.text', 'Payment');\ncy.get(registro.fullName).type(currentPaylod.fullName);\ncy.get(registro.cardNum).type(currentPaylod.cardNumber);\ncy.get(registro.cvc).type(currentPaylod.cvc);\ncy.get(registro.expireMonth).type(currentPaylod.expireMonth);\ncy.get(registro.expireYear).type(currentPaylod.expireYear);\ncy.get(registro.payBtn).click();\ncy.get(registro.orderPlaceTittle).should('contain.text', 'Order Placed!');\ncy.get(registro.continueBtn).click();\n//then to finish we close session\ncy.get(registro.logoutLoginBtn).click();\ncy.get(registro.loginBtnOutside).should('contain.text', 'Signup / Login');",
               "err": {},
-              "uuid": "18367bbe-aedf-44a9-b1dd-f529d7bb03d3",
-              "parentUUID": "84db001c-6a90-4440-8e7d-c2877d113d39",
+              "uuid": "684ac276-9a58-4d44-bcbb-62e14f367d16",
+              "parentUUID": "e03a60b7-ba3c-4fa7-8965-f896b73bdd5b",
               "isHook": false,
               "skipped": false
             },
@@ -56,7 +56,7 @@
               "title": "login adn contact flow",
               "fullTitle": "Apply Digital Test login adn contact flow",
               "timedOut": null,
-              "duration": 10522,
+              "duration": 11023,
               "state": "passed",
               "speed": "slow",
               "pass": true,
@@ -65,21 +65,21 @@
               "context": null,
               "code": "//we log in with the user created in the previous test\ncy.get(registro.logoutLoginBtn).should('contain.text', 'Signup / Login').click();\ncy.get(registro.loginForm).should('be.visible');\ncy.get(registro.loginEmail).type(currentPaylod.email);\ncy.get(registro.passwordLogin).type(currentPaylod.password);\ncy.get(registro.loginBtn).click();\ncy.get(registro.logoutLoginBtn).should('contain.text', 'Logout');\n//we move to the contact us section and fill out the form, to proceed to send it.\ncy.get(contacto.contactBtn).click();\ncy.get(contacto.contactTittle).should('contain.text', 'Contact Us');\ncy.get(contacto.contactName).type(currentPaylod.fullName);\ncy.get(contacto.contactEmail).type(currentPaylod.email);\ncy.get(contacto.contactSubject).type(currentPaylod.subject);\ncy.get(contacto.contactMessage).type(currentPaylod.message);\ncy.get(contacto.uploadFileBtn).selectFile({\n  contents: 'cypress/fixtures/gatos.jpg',\n  fileName: 'gatos.jpg',\n  mimeType: 'image/jpg'\n}, {\n  force: true\n});\ncy.get(contacto.contactSubmit).click();\n//we validate that it was sent correctly and we close session\ncy.get(contacto.contactStatus).should('contain.text', 'Success! Your details have been submitted successfully.');\ncy.get(registro.logoutLoginBtn).click();\n//we validate that the session was closed correctly\ncy.get(registro.loginBtnOutside).should('contain.text', 'Signup / Login');",
               "err": {},
-              "uuid": "aa1fab39-a2f9-4efb-8049-e20d5c8ed0a8",
-              "parentUUID": "84db001c-6a90-4440-8e7d-c2877d113d39",
+              "uuid": "0b72f292-6595-4bee-8467-ff288b1e7d9f",
+              "parentUUID": "e03a60b7-ba3c-4fa7-8965-f896b73bdd5b",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "18367bbe-aedf-44a9-b1dd-f529d7bb03d3",
-            "aa1fab39-a2f9-4efb-8049-e20d5c8ed0a8"
+            "684ac276-9a58-4d44-bcbb-62e14f367d16",
+            "0b72f292-6595-4bee-8467-ff288b1e7d9f"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 39674,
+          "duration": 39935,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -114,7 +114,7 @@
     "marge": {
       "options": {
         "reportDir": "mocha-report",
-        "overwrite": false,
+        "overwrite": true,
         "html": true,
         "json": true
       },
