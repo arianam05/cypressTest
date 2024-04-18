@@ -1,3 +1,5 @@
+
+
 // ***********************************************
 // This example commands.js shows you how to
 // create various custom commands and overwrite
@@ -24,19 +26,17 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
-Cypress.Commands.add("addCart", (nombreDeProducto) => {
-    cy.get("div[class='product-thumb']").as("contenedorDeProductos")
- 
+Cypress.Commands.add("selectProduct", (nombreDeProducto) => {
+    cy.get(".features_items > .col-sm-4").as("contenedorDeProductos")
     cy.get("@contenedorDeProductos")
+        .find('.productinfo')
         .each(($el, index, $list) => {
-            cy.get(':has(.caption) h4 a').eq(index).then(function ($el1) {
-                let producto = $el1.text()
-                cy.log(producto)
-                if (producto.includes(nombreDeProducto)) {
-                    cy.log('Se ha encontrado el elemento buscado')
-                    cy.get('@contenedorDeProductos').eq(index).find("button[onclick^='cart.add']").click()
-                    cy.get('.alert.alert-success.alert-dismissible').should('contain.text', nombreDeProducto)
-                }
-            })
+            let producto = $el.text()
+            if (producto.includes(nombreDeProducto)) {
+                cy.log('Se ha encontrado el elemento buscado')
+                cy.get('@contenedorDeProductos').eq(index).find('.choose').click()
+                cy.get('.product-information > h2').should('contain.text', nombreDeProducto)
+            }
+
         })
 })

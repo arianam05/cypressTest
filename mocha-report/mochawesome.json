@@ -1,0 +1,124 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 2,
+    "passes": 2,
+    "pending": 0,
+    "failures": 0,
+    "start": "2024-04-18T15:26:26.897Z",
+    "end": "2024-04-18T15:27:15.098Z",
+    "duration": 48201,
+    "testsRegistered": 2,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "928d4384-32dd-4d72-88c6-2d9a996cfbec",
+      "title": "",
+      "fullFile": "cypress/e2e/examples/automationExercise.cy.js",
+      "file": "cypress/e2e/examples/automationExercise.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "0f3dfb8b-4f26-4cf6-bd39-f48a745b0f75",
+          "title": "Conjunto de pruebas parte 1",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "add cart commands",
+              "fullTitle": "Conjunto de pruebas parte 1 add cart commands",
+              "timedOut": null,
+              "duration": 33012,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const emailTest = `cypressTest${Date.now()}@gmail.com`;\ncurrentPaylod.email = emailTest;\ncy.viewProduct('Blue Cotton Indie Mickey Dress');\ncy.get('#quantity').clear().type(30);\ncy.get(':nth-child(5) > .btn').click().wait(1000);\ncy.get('.text-center').find('u').should('contain.text', 'View Cart').click();\ncy.get('.col-sm-6 > .btn').should('contain.text', 'Proceed To Checkout').click();\ncy.get('.modal-body > :nth-child(2) > a > u').should('contain.text', 'Register / Login').click();\ncy.get('.signup-form').should('be.visible');\ncy.get('[data-qa=\"signup-name\"]').type(currentPaylod.name);\ncy.get('[data-qa=\"signup-email\"]').type(currentPaylod.email);\ncy.get('[data-qa=\"signup-button\"]').click();\ncy.get(':nth-child(1) > b').should('contain.text', 'Enter Account Information');\ncy.get('[data-qa=\"password\"]').type(currentPaylod.password);\ncy.get('[data-qa=\"days\"]').select(currentPaylod.day);\ncy.get('[data-qa=\"months\"]').select(currentPaylod.month);\ncy.get('[data-qa=\"years\"]').select(currentPaylod.year);\ncy.get('[data-qa=\"first_name\"]').type(currentPaylod.name);\ncy.get('[data-qa=\"last_name\"]').type(currentPaylod.lastName);\ncy.get('[data-qa=\"address\"]').type(currentPaylod.address);\ncy.get('[data-qa=\"country\"]').select(currentPaylod.country);\ncy.get('[data-qa=\"state\"]').type(currentPaylod.state);\ncy.get('[data-qa=\"city\"]').type(currentPaylod.city);\ncy.get('[data-qa=\"zipcode\"]').type(currentPaylod.zip);\ncy.get('[data-qa=\"mobile_number\"]').type(currentPaylod.phone);\ncy.get('[data-qa=\"create-account\"]').click();\ncy.get('.col-sm-9').should('contain.text', 'Account Created!');\ncy.get('[data-qa=\"continue-button\"]').click();\ncy.get('.shop-menu > .nav > :nth-child(3)').click();\ncy.get('.col-sm-6 > .btn').should('contain.text', 'Proceed To Checkout').click();\ncy.get(':nth-child(7) > .btn').should('contain.text', 'Place Order').click();\ncy.get('.heading').should('contain.text', 'Payment');\ncy.get('[data-qa=\"name-on-card\"]').type(currentPaylod.fullName);\ncy.get('[data-qa=\"card-number\"]').type(currentPaylod.cardNumber);\ncy.get('[data-qa=\"cvc\"]').type(currentPaylod.cvc);\ncy.get('[data-qa=\"expiry-month\"]').type(currentPaylod.expireMonth);\ncy.get('[data-qa=\"expiry-year\"]').type(currentPaylod.expireYear);\ncy.get('[data-qa=\"pay-button\"]').click();\ncy.get('[data-qa=\"order-placed\"] > b').should('contain.text', 'Order Placed!');\ncy.get('[data-qa=\"continue-button\"]').click();\ncy.get('.shop-menu > .nav > :nth-child(4)').click();\ncy.get('.nav > :nth-child(4)').should('contain.text', 'Signup / Login');",
+              "err": {},
+              "uuid": "f7a6efd0-a01c-42a4-8243-c427fef1cd2b",
+              "parentUUID": "0f3dfb8b-4f26-4cf6-bd39-f48a745b0f75",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "login",
+              "fullTitle": "Conjunto de pruebas parte 1 login",
+              "timedOut": null,
+              "duration": 12340,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('.shop-menu > .nav > :nth-child(4)').should('contain.text', 'Signup / Login').click();\ncy.get('.login-form > h2').should('be.visible');\ncy.get('[data-qa=\"login-email\"]').type(currentPaylod.email);\ncy.get('[data-qa=\"login-password\"]').type(currentPaylod.password);\ncy.get('[data-qa=\"login-button\"]').click();\ncy.get('.shop-menu > .nav > :nth-child(4)').should('contain.text', 'Logout');\ncy.get('.nav > :nth-child(9)').click();\ncy.get('.col-sm-12 > .title').should('contain.text', 'Contact Us');\ncy.get('[data-qa=\"name\"]').type(currentPaylod.fullName);\ncy.get('[data-qa=\"email\"]').type(currentPaylod.email);\ncy.get('[data-qa=\"subject\"]').type(currentPaylod.subject);\ncy.get('[data-qa=\"message\"]').type(currentPaylod.message);\ncy.get(\"[type='file']\").selectFile({\n  contents: 'cypress/fixtures/gatos.jpg',\n  fileName: 'gatos.jpg',\n  mimeType: 'image/jpg'\n}, {\n  force: true\n});\ncy.get('[data-qa=\"submit-button\"]').click();\ncy.get('.status').should('contain.text', 'Success! Your details have been submitted successfully.');\ncy.get('.shop-menu > .nav > :nth-child(4)').click();\ncy.get('.nav > :nth-child(4)').should('contain.text', 'Signup / Login');",
+              "err": {},
+              "uuid": "4d366ac1-d0c2-4605-8862-f8a0e33e9e10",
+              "parentUUID": "0f3dfb8b-4f26-4cf6-bd39-f48a745b0f75",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "f7a6efd0-a01c-42a4-8243-c427fef1cd2b",
+            "4d366ac1-d0c2-4605-8862-f8a0e33e9e10"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 45352,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "mocha-report",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

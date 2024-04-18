@@ -1,6 +1,0 @@
-{
-    "stepDefinitions": [
-        "cypress/e2e/examples/cucumber/stepDefinitions/*.js"
-    ]
-    
-}
