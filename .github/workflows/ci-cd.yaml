@@ -26,9 +26,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Run tests
+      - name: Install Cypress
+        run: npm install cypress
+
+      - name: Run Cypress tests
         run: npm run test-report
-        continue-on-error: true
 
       - name: Archive test report
         if: always()
@@ -36,6 +38,7 @@ jobs:
         with:
           name: mochawesome
           path: cypress/mocha-report
+
 
   deploy:
     runs-on: ubuntu-latest
