@@ -1,0 +1,23 @@
+name: CI/CD Pipeline
+
+on:
+  schedule:
+    - cron: '0 11 * * *' # Ejecutar todos los días a las 8 am (hora de Chile, UTC-3)
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install Cypress
+        run: npm install cypress
+
+      - name: Run Cypress tests
+        run: npm run test-report

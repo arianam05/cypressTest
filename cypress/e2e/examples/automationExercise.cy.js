@@ -15,7 +15,7 @@ describe('Apply Digital Test', () => {
 
 
     beforeEach(() => {
-        //Ingresar a la pagina
+        //go to page
         cy.visit('https://automationexercise.com/')
     })
 
