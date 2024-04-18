@@ -3,6 +3,12 @@ name: CI/CD Pipeline
 on:
   schedule:
     - cron: '0 11 * * *' # Ejecutar todos los días a las 8 am (hora de Chile, UTC-3)
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build:
