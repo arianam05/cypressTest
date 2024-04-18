@@ -68,7 +68,7 @@ describe('Apply Digital Test', () => {
         //then to finish we close session
         cy.get(registro.logoutLoginBtn).click()
         cy.get(registro.loginBtnOutside).should('contain.text', 'Signup / Login')
-    })
+    });
 
     it('login adn contact flow', () => {
         //we log in with the user created in the previous test
@@ -96,6 +96,6 @@ describe('Apply Digital Test', () => {
         cy.get(registro.logoutLoginBtn).click()
         //we validate that the session was closed correctly
         cy.get(registro.loginBtnOutside).should('contain.text', 'Signup / Login')
-    })
+    });
 
-})
+});
