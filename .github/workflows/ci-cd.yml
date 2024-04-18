@@ -1,0 +1,32 @@
+name: CI/CD Pipeline
+
+on:
+  schedule:
+    - cron: '0 11 * * *' # Ejecutar todos los días a las 8 am (hora de Chile, UTC-3)
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Cypress tests
+        run: npm run test-report
+
+      - name: Send email with report
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 587
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: Test Report
+          to: testcicdariana@gmail.com
+          from: CI/CD Pipeline testcicdariana@gmail.com
+          body: 'Hi,\n\nAttached is the test report from the CI/CD pipeline.\n\nBest regards.'
+          attachments: mocha-report/mochawesome.html
