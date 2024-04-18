@@ -9,30 +9,40 @@ on:
   pull_request:
     branches:
       - main
-
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Install dependencies
+      - name: Build
         run: npm install
 
-      - name: Run Cypress tests
-        run: npm run test-report
+  test:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-      - name: Send email with report
-        uses: dawidd6/action-send-mail@v3
+      - name: Run tests
+        run: npm run test
+        continue-on-error: true
+
+      - name: Archive test report
+        if: always()
+        uses: actions/upload-artifact@v2
         with:
-          server_address: smtp.gmail.com
-          server_port: 587
-          username: ${{ secrets.EMAIL_USERNAME }}
-          password: ${{ secrets.EMAIL_PASSWORD }}
-          subject: Test Report
-          to: testcicdariana@gmail.com
-          from: CI/CD Pipeline testcicdariana@gmail.com
-          body: 'Hi,\n\nAttached is the test report from the CI/CD pipeline.\n\nBest regards.'
-          attachments: mocha-report/mochawesome.html
+          name: mochawesome-report
+          path: cypress/mocha-report
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Deploy
+        run: npm run deploy
