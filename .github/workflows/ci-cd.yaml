@@ -22,10 +22,10 @@ jobs:
       - name: Run Cypress tests
         run: npm run test-report
 
-  # Comprimir la carpeta mocha-report
-      - name: Compress mocha-report directory
+ # Comprimir la carpeta mocha-report en formato tar.gz
+      - name: Compress mocha-report directory to tar.gz
         run: |
-          zip -r mocha-report.zip mocha-report
+          tar -czf mocha-report.tar.gz mocha-report
 
   # Enviar el reporte por correo electrónico
       - name: Send Email with Mocha Report
@@ -53,4 +53,4 @@ jobs:
             ¡Saludos!
           to: "testingpipeline2024@gmail.com"  
           from: ${{ secrets.SMTP_USERNAME }}
-          attachments: "mocha-report.zip" 
+          attachments: "mocha-report.tar.gz" 
