@@ -20,7 +20,7 @@ jobs:
         run: npm install cypress
 
       - name: Run Cypress tests
-        run: npm cypress test-report
+        run: npm run test-report
 
   # Enviar el reporte por correo electrónico
       - name: Send Email with Mocha Report
