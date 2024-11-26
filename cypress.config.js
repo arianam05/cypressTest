@@ -11,7 +11,8 @@ module.exports = defineConfig({
       "reportDir": "mocha-report",
       "overwrite": true,
       "html": true,
-      "json": true
+      "json": true,
+      "inlineAssets": true,
     }
 
 
