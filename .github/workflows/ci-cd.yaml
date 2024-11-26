@@ -40,3 +40,21 @@ jobs:
           to: "testingpipeline2024@gmail.com"  
           from: ${{ secrets.SMTP_USERNAME }}
           attachments: "mocha-report/mochawesome.html"
+
+     # Notificar a Slack
+      - name: Send Slack Notification
+        run: |
+          curl -X POST -H 'Content-type: application/json' --data '{
+            "text": "✅ *Pipeline Ejecutado*",
+            "attachments": [
+              {
+                "color": "#36a64f",
+                "title": "Detalles del Pipeline",
+                "title_link": "${{ github.run_url }}",
+                "text": "El pipeline se ha ejecutado correctamente. Puedes ver más detalles en el enlace de abajo.",
+                "footer": "GitHub Actions",
+                "footer_icon": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
+                "ts": '$(date +%s)'
+              }
+            ]
+          }' ${{ secrets.SLACK_WEBHOOK_URL }}
