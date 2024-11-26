@@ -34,4 +34,4 @@ jobs:
           body: "Adjunto encontrarás el reporte de las pruebas."
           to: "testingpipeline2024@gmail.com"  
           from: ${{ secrets.SMTP_USERNAME }}
-          attachments: "cypressTest/mocha-report/mochawesome.html"  
+          attachments: "mocha-report/mochawesome.html" 
