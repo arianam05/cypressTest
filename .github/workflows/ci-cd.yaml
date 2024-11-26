@@ -22,10 +22,12 @@ jobs:
       - name: Run Cypress tests
         run: npm run test-report
 
- # Comprimir la carpeta mocha-report en formato tar.gz
-      - name: Compress mocha-report directory to tar.gz
+# Leer el reporte HTML generado y enviarlo en el correo
+      - name: Read HTML Report
+        id: read_report
         run: |
-          tar -czf mocha-report.tar.gz mocha-report
+          REPORT=$(cat mocha-report/mochawesome.html)
+          echo "::set-output name=html_report::$REPORT"
 
   # Enviar el reporte por correo electrónico
       - name: Send Email with Mocha Report
@@ -39,14 +41,9 @@ jobs:
           body: |
             ¡Hola!
 
-            Adjuntamos el reporte de las pruebas de Cypress generadas.
+            El reporte de las pruebas de Cypress generadas está disponible a continuación:
 
-            Para ver los resultados de las pruebas, por favor sigue estos pasos:
-
-            1. **Descarga el archivo adjunto** llamado `mocha-report.zip`.
-            2. **Descomprime el archivo** en tu computadora.
-            3. Abre el archivo `mochawesome.html` en tu navegador web (como Chrome, Firefox o Safari).
-            4. El reporte se mostrará como una página web interactiva con los resultados de las pruebas.
+            ${{ steps.read_report.outputs.html_report }}  # Incrustar el HTML directamente en el correo
 
             Si tienes algún problema abriendo el reporte, por favor avísanos.
 
