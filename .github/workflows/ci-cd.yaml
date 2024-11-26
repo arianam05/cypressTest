@@ -22,12 +22,14 @@ jobs:
       - name: Run Cypress tests
         run: npm run test-report
 
-# Leer el reporte HTML generado y enviarlo en el correo
+# Leer el reporte HTML generado
       - name: Read HTML Report
         id: read_report
         run: |
           REPORT=$(cat mocha-report/mochawesome.html)
-          echo "::set-output name=html_report::$REPORT"
+          echo "HTML_REPORT<<EOF" >> $GITHUB_ENV
+          echo "$REPORT" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
 
   # Enviar el reporte por correo electrónico
       - name: Send Email with Mocha Report
@@ -38,16 +40,25 @@ jobs:
           username: ${{ secrets.SMTP_USERNAME }}
           password: ${{ secrets.SMTP_PASSWORD }}
           subject: "Cypress Test Report"
-          body: |
-            ¡Hola!
-
-            El reporte de las pruebas de Cypress generadas está disponible a continuación:
-
-            ${{ steps.read_report.outputs.html_report }}  # Incrustar el HTML directamente en el correo
-
-            Si tienes algún problema abriendo el reporte, por favor avísanos.
-
-            ¡Saludos!
+         body: |
+            <!DOCTYPE html>
+            <html>
+            <head>
+              <style>
+                body { font-family: Arial, sans-serif; }
+                h1 { color: #333; }
+                p { color: #555; }
+              </style>
+            </head>
+            <body>
+              <h1>Reporte de Pruebas de Cypress</h1>
+              <p>El reporte de las pruebas de Cypress generadas está disponible a continuación:</p>
+              <div>
+                ${{ env.HTML_REPORT }}  <!-- Incrustar el HTML directamente aquí -->
+              </div>
+              <p>Si tienes algún problema abriendo el reporte, por favor avísanos.</p>
+              <p>¡Saludos!</p>
+            </body>
+            </html>
           to: "testingpipeline2024@gmail.com"  
           from: ${{ secrets.SMTP_USERNAME }}
-          attachments: "mocha-report.tar.gz" 
