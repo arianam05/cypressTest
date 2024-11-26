@@ -20,7 +20,7 @@ jobs:
         run: npm install cypress
 
       - name: Run Cypress tests
-        run: npm run test > cypress-results.txt
+        run: npm cypress test-report
 
   # Enviar el reporte por correo electrónico
       - name: Send Email with Mocha Report
@@ -39,5 +39,4 @@ jobs:
             ¡Saludos!
           to: "testingpipeline2024@gmail.com"  
           from: ${{ secrets.SMTP_USERNAME }}
-          attachments: |
-            cypress-results.txt
+          attachments: "mocha-report/mochawesome.html"
