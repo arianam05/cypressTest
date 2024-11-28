@@ -41,9 +41,12 @@ jobs:
           from: ${{ secrets.SMTP_USERNAME }}
           attachments: "mocha-report/mochawesome.html"
 
-     #     Depurar el contexto de GitHub para verificar la URL del pipeline
-      - name: Debug GitHub Context
-        run: echo "Pipeline URL:'"${{ github.run_url }}"'"
+     # Construir la URL del Pipeline
+      - name: Build Pipeline URL
+        run: |
+          PIPELINE_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          echo "Pipeline URL: $PIPELINE_URL"
+          echo "PIPELINE_URL=$PIPELINE_URL" >> $GITHUB_ENV
         
      # Notificar a Slack
       - name: Send Slack Notification
@@ -54,8 +57,8 @@ jobs:
               {
                 "color": "#36a64f",
                 "title": "Detalles del Pipeline",
-                "title_link": "'"${{ github.run_url }}"'",
-                "text": "El pipeline se ha ejecutado correctamente. Puedes ver más detalles en el enlace de abajo.",
+                "title_link": "'"${{ env.PIPELINE_URL }}"'",
+                "text": "El pipeline se ha ejecutado correctamente. Haz clic en el enlace para más detalles.",
                 "footer": "GitHub Actions",
                 "footer_icon": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
                 "ts": '$(date +%s)'
