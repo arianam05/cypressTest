@@ -2,7 +2,7 @@ name: CI/CD Pipeline
 
 on:
   schedule:
-    - cron: '0 11 * * *' # Ejecutar todos los días a las 8 am (hora de Chile, UTC-3)
+    - cron: '0 11 * * *' # Run every day at 8am (Chile time, UTC-3)
   push:
     branches:
       - main
@@ -22,7 +22,7 @@ jobs:
       - name: Run Cypress tests
         run: npm run test-report
 
-  # Enviar el reporte por correo electrónico
+  # Send the report by email
       - name: Send Email with Mocha Report
         uses: dawidd6/action-send-mail@v3
         with:
@@ -32,23 +32,23 @@ jobs:
           password: ${{ secrets.SMTP_PASSWORD }}
           subject: "Cypress Test Report"
           body: |
-            ¡Hola!
+            Hello!
 
-            Se adjunta el archivo con los resultados de las pruebas de Cypress ejecutadas en el pipeline.
+              Attached is the file with the results of the Cypress tests executed in the pipeline.
 
-            ¡Saludos!
+            Regards!
           to: "testingpipeline2024@gmail.com"  
           from: ${{ secrets.SMTP_USERNAME }}
           attachments: "mocha-report/mochawesome.html"
 
-     # Construir la URL del Pipeline
+     # Building the Pipeline URL
       - name: Build Pipeline URL
         run: |
           PIPELINE_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
           echo "Pipeline URL: $PIPELINE_URL"
           echo "PIPELINE_URL=$PIPELINE_URL" >> $GITHUB_ENV
         
-     # Notificar a Slack
+     # Notify Slack
       - name: Send Slack Notification
         run: |
           curl -X POST -H 'Content-type: application/json' --data '{
@@ -56,9 +56,9 @@ jobs:
             "attachments": [
               {
                 "color": "#36a64f",
-                "title": "Detalles del Pipeline",
+                "title": "Pipeline Details",
                 "title_link": "'"${{ env.PIPELINE_URL }}"'",
-                "text": "El pipeline se ha ejecutado correctamente. Haz clic en el enlace para más detalles.",
+                "text": "The pipeline has been executed successfully. Click the link for more details..",
                 "footer": "GitHub Actions",
                 "footer_icon": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
                 "ts": '$(date +%s)'
