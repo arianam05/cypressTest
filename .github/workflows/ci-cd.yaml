@@ -52,7 +52,7 @@ jobs:
       - name: Send Slack Notification
         run: |
           curl -X POST -H 'Content-type: application/json' --data '{
-            "text": "✅ *Pipeline Ejecutado*",
+            "text": "✅ *Pipeline Executed*",
             "attachments": [
               {
                 "color": "#36a64f",
