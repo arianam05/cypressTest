@@ -34,7 +34,7 @@ jobs:
           body: |
             Hello!
 
-              Attached is the file with the results of the Cypress tests executed in the pipeline.
+              In this email is attached a .html file, which you must download, and then in your download folder click on it and it will open in your browser to view it.
 
             Regards!
           to: "testingpipeline2024@gmail.com"  
