@@ -9,4 +9,4 @@ results/
 .DS_Store
 .mp4
 .png
-cypressTest/mocha-report
+mocha-report/
