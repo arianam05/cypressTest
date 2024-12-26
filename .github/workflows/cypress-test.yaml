@@ -39,7 +39,7 @@ jobs:
             Regards!
           to: "testingpipeline2024@gmail.com"  
           from: ${{ secrets.SMTP_USERNAME }}
-          attachments: "mocha-report/mochawesome.html"
+          attachments: "mocha-report/index.html"
 
      # Building the Pipeline URL
       - name: Build Pipeline URL
